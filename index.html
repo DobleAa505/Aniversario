@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Feliz 1er aniversario!</title>
+  <link rel="icon" type="image/png" href="favicon.jpeg">
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #faf7f2, #f1e7d8);
+      font-family: 'Playfair Display', serif;
+      color: #3b2f2f;
+      overflow-x: hidden;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* ---------- PORTADA ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      /* IMAGEN DE FONDO */
+      background: url("nosotros.jpeg") center/cover no-repeat;
+
+      position: relative;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+      /* Overlay elegante para que el texto se vea */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.hero h1,
+.hero p,
+.hero button {
+  position: relative;
+  z-index: 2;
+}
+    .hero h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 64px;
+      color: #b68b4c;
+      margin-bottom: 20px;
+      animation: fadeDown 2s ease forwards;
+    }
+
+    .hero p {
+      font-size: 18px;
+      letter-spacing: 1px;
+      opacity: 0;
+      color: white;
+      animation: fadeUp 2s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    .hero button {
+      margin-top: 50px;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 40px;
+      background: linear-gradient(45deg, #d4a373, #b68b4c);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      opacity: 0;
+      animation: fadeUp 2s ease forwards;
+      animation-delay: 1.5s;
+    }
+
+    .hero button:hover {
+      transform: translateY(-3px);
+    }
+
+    /* ---------- TEXTO DISTANCIA ---------- */
+    .distance p {
+      font-size: 20px;
+      line-height: 1.8;
+    }
+
+    /* ---------- TARJETAS ---------- */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .card {
+      background: #fffdf9;
+      padding: 30px 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-top: 15px;
+    }
+
+    /* ---------- CARTA ---------- */
+    .letter {
+      display: none;
+      background: #fffdf9;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      text-align: left;
+      line-height: 1.9;
+      margin-top: 40px;
+      animation: fadeUp 1.5s ease forwards;
+    }
+
+    /* ---------- PROMESA ---------- */
+    .promise {
+      font-size: 22px;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    /* ---------- CONTADOR ---------- */
+    .counter {
+      font-size: 26px;
+      letter-spacing: 2px;
+      margin-top: 20px;
+    }
+
+    /* ---------- ANIMACIONES ---------- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 48px; }
+      .distance p { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AUDIO -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="Elvis Presley - Can't Help Falling In Love (Official Audio).mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- PORTADA -->
+  <section class="hero">
+    <h1>¡Feliz 1er aniversario!</h1>
+    <p>Hillary · 13 de febrero</p>
+    <button onclick="scrollToContent()">Para ti, mi princesa</button>
+  </section>
+
+  <!-- DISTANCIA -->
+  <section class="distance" id="content">
+    <p>
+      No siempre estamos en el mismo lugar.<br>
+      A veces nos separan kilómetros, horarios y vuelos.<br><br>
+      Pero incluso a la distancia,<br>
+      nuestro amor siempre encuentra la forma de estar presente.
+    </p>
+  </section>
+
+  <!-- REGALOS -->
+  <section>
+    <h2>Esto es para ti:</h2>
+    <div class="cards">
+      <div class="card" onclick="openGift('letterGift')">💌<h3>Carta</h3></div>
+      <div class="card" onclick="openGift('promiseGift')">🌻<h3>Promesa</h3></div>
+      <div class="card" onclick="openGift('timeGift')">⏳<h3>Nuestro tiempo</h3></div>
+      <div class="card" onclick="openGift('songGift')">🎶<h3>Nuestra canción</h3></div>
+    </div>
+
+    <!-- REGALO: CARTA -->
+    <div class="letter" id="letterGift">
+      <p>
+        Mi princesa,<br><br>
+        La distancia nos ha enseñado paciencia,<br>
+        nos ha enseñado a esperar,<br>
+        pero sobre todo, nos ha enseñado cuánto nos amamos.<br>
+        Le doy gracias a Dios por estar presente en nuestras vidas<br>
+        Y que siga presente iluminandonos hasta nuestro final.<br><br>
+        Eres mi cielo, preciosa mía,<br>
+        mi lugar seguro incluso cuando estamos lejos.<br><br>
+        Feliz 1er aniversario mi amor!<br><br>
+        Con todo mi amor,<br>
+        <strong>De yo para ti</strong>
+      </p>
+    </div>
+
+    <!-- REGALO: PROMESA -->
+    <div class="letter" id="promiseGift">
+      <p>
+        Hillary,<br><br>
+        Hoy quiero prometerte algo simple, pero real, algo que ya habiamos dicho, pero quiero volver a recalcar:<br><br>
+        <strong>estar siempre juntos.</strong><br><br>
+        Aunque estemos lejos,<br>
+        aunque haya días difíciles,
+        aunque a veces solo podamos vernos en vacaciones,<br><br>
+        mi amor por ti siempre va a estar ahí.<br><br>
+        Porque tú eres mi princesa,
+        y yo siempre voy a elegirte.<br><br>
+        Porque yo siempre te amé,<br>
+        Te amo,<br>
+        Y te seguiré amando! amada mía.<br><br>
+      </p>
+    </div>
+
+    <!-- REGALO: TIEMPO -->
+    <div class="letter" id="timeGift">
+      <p>
+        Nuestro amor no se mide en kilómetros...<br>
+        se mide en paciencia, en esfuerzo y en ganas.<br><br>
+        Cada llamada,
+        cada mensaje,
+        cada "te extraño",
+        cada "te amo"...<br><br>
+        Todo eso también cuenta como amor real.<br><br>
+        Y aunque estemos lejos,
+        nuestro tiempo juntos sigue y seguirá creciendo.
+      </p>
+    </div>
+
+    <!-- REGALO: CANCIÓN -->
+    <div class="letter" id="songGift">
+      <p>
+        Esta canción me recuerda a ti...<br><br>
+        Porque hay algo en tu amor que me calma,
+        que me hace sentir en casa,
+        y que me hace pensar que no importa la distancia... Ya que...<br><br>
+        <em>Hay cosas que están destinadas a ser, y la mía es seguir enamorándome de ti, una y otra vez</em><br><br>
+        🎶 <strong>Can’t Help Falling in Love</strong> — Elvis Presley
+      </p>
+    </div>
+
+  </section>
+
+  <!-- PROMESA -->
+  <section>
+    <p class="promise">
+      Mi promesa:<br>
+      Estar siempre juntos.<br>
+      En la distancia y en cada reencuentro.
+    </p>
+  </section>
+
+  <!-- CONTADOR -->
+  <section>
+    <h2>Nuestro tiempo juntos</h2>
+    <div class="counter" id="counter"></div>
+  </section>
+
+  <script>
+    function scrollToContent() {
+      document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openGift(giftId) {
+      // Cierra todos los regalos
+      const gifts = document.querySelectorAll('.letter');
+      gifts.forEach(gift => gift.style.display = 'none');
+
+      // Abre el regalo seleccionado
+      const selectedGift = document.getElementById(giftId);
+      selectedGift.style.display = 'block';
+
+      // Scroll suave hacia el regalo
+      selectedGift.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // CONTADOR
+    const startDate = new Date('2025-02-13');
+    const counter = document.getElementById('counter');
+
+    function updateCounter() {
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      counter.innerText = `${days} días juntos`;
+    }
+
+    updateCounter();
+    setInterval(updateCounter, 1000 * 60 * 60);
+
+    // Volumen música
+    function scrollToContent() {
+  document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
+
+  const music = document.getElementById('bgMusic');
+  music.volume = 0.4;
+  music.play().catch(() => {
+    console.log("El navegador bloqueó autoplay hasta interacción.");
+  });
+}
+
+  </script>
+
+</body>
+</html>
